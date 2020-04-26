@@ -13,13 +13,16 @@
  */
 
 export function MatchNombre(props) {
-    const [name,setName] = React.useState('');
-    const regex = new RegExp(props.name,'i')
-    return(
-        <input className={`input ${name.match(regex)?'input-match':''}`} onChange={(e)=>{
-            setName(e.target.value)
-        }}/>
-    )
+    const [name, setName] = React.useState('');
+    const regex = new RegExp(props.name, 'i');
+    return (
+        <input
+            className={`input ${name.match(regex) ? 'input-match' : ''}`}
+            onChange={(e) => {
+                setName(e.target.value);
+            }}
+        />
+    );
 }
 
 /*
@@ -41,16 +44,18 @@ export function MatchNombre(props) {
  */
 
 export function PasswordInput(props) {
-    const [password,setPassword] = React.useState('');
-    return(
+    const [password, setPassword] = React.useState('');
+    return (
         <input
-            className={`input ${(password.length>props.minLength)?'':'input-match'}`}
+            className={`input ${
+                password.length > props.minLength ? '' : 'input-match'
+            }`}
             type="password"
-            onChange={(e)=>{
-                setPassword(e.target.value)
+            onChange={(e) => {
+                setPassword(e.target.value);
             }}
         />
-    )
+    );
 }
 
 /*
@@ -80,14 +85,14 @@ export function PasswordInput(props) {
  */
 
 export function ValidationInput(props) {
-    const [input,setInput] = React.useState('');
-    return(
+    const [input, setInput] = React.useState('');
+    return (
         <input
-            className={`input ${props.validation?'':'input-match'}`}
-            onChange={(e)=>{
+            className={`input ${props.validation(input) ? '' : 'input-match'}`}
+            onChange={(e) => {
                 setInput(e.target.value);
             }}
-            type={props.isPassword?'password':''}
+            type={props.isPassword ? 'password' : ''}
         />
-    )
+    );
 }
